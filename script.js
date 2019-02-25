@@ -14,77 +14,79 @@ let onFooterClick =  function(){
 };
 
 // Step 3 : Add the event listener for the element and function
-
 clickerFooter.addEventListener("click", onFooterClick);
+
 
 //2) Fonctionnalité 2
 
-// Step 1 :  Find and store the element we want to listen to events on.
 let navbarHeader = document.getElementById("navbarHeader");
 let navbarToggler = document.getElementsByClassName("navbar-toggler")[0];
 // console.log(document.getElementById("navbarHeader"));
-
-// Step 2 :  Define the function that will respond to the event.
 
 let onNavbarTogglerClick = function(){
 	navbarHeader.classList.toggle("collapse");
 }
 
-// Step 3 : Add the event listener for the element and function
-
 navbarToggler.addEventListener("click", onNavbarTogglerClick);
-
 
 //3) Fonctionnalité 3
 
 
-// Step 1 :  Find and store the element we want to listen to events on.
-
-let firstCard = document.getElementsByClassName("card mb-4 box-shadow")[0];
-console.log(document.getElementsByClassName("card mb-4 box-shadow")[0]);
-
+let firstCardText = document.querySelector(".card-text");
 let firstCardEdit = document.getElementsByClassName("btn btn-sm btn-outline-secondary")[0];
-console.log(document.getElementsByClassName("btn btn-sm btn-outline-secondary")[0]);
+// console.log(document.getElementsByClassName("btn btn-sm btn-outline-secondary")[0]);
 
-// Step 2 :  Define the function that will respond to the event.
 
 let changeColor = function(){
-	firstCardEdit.style.color = "red";
+	firstCardText.style.color = "red";
 }
-
-// Step 3 : Add the event listener for the element and function
 
 firstCardEdit.addEventListener("click",changeColor);
 
 
 //4) Fonctionnalité 4
 
-// Step 1 :  Find and store the element we want to listen to events on.
 
-let secondCard = document.querySelectorAll('.row .col-md-4')[1]
 let secondCardEdit = document.getElementsByClassName("btn btn-sm btn-outline-secondary")[1];
-console.log(document.getElementsByClassName("btn btn-sm btn-outline-secondary")[1]);
+let secondCardText = document.querySelectorAll(".card-text")[1]
+let colorStatus = false; // déclaration couleur de départ
 
-// Step 2 :  Define the function that will respond to the event.
+// console.log(document.getElementsByClassName("btn btn-sm btn-outline-secondary")[1]);
 
-// Step 3 : Add the event listener for the element and function
+function changeColor2(){
+	if (colorStatus === false){ // si on est sur la couleur de départ, on change en vert 
+		secondCardText.style.color = "green";
+		colorStatus = true; 
+	}
+	else { // si la couleur est verte, revenir sur la couleur de départ
+		secondCardText.style.color = ""; 
+		colorStatus = false; 
+	}
+}
 
-secondCardEdit.addEventListener("click", function(){
-	secondCard.style.color == "green" ? secondCard.style.color = "black" : secondCard.style.color = "green";
-	});
+secondCardEdit.addEventListener("click", changeColor2);
 
 
 //5) Fonctionnalité 5
 
-// Step 1 :  Find and store the element we want to listen to events on.
 
-let navbar = document.getElementsByClassName("navbar")[0]
+let navbar = document.getElementsByClassName("navbar")[0];
+let bootstrap = document.getElementsByTagName("link")[0];
+let bootstrapStatus = false; // déclaration bootstrap de départ
 
-navbar.addEventListener("dblclick", function(){
-	document.styleSheets[0].disabled == true ? document.styleSheets[0].disabled = false : document.styleSheets[0].disabled = true;
-});	
+function removeStyle(){
+	if (bootstrapStatus === false){ // s'il y a du bootstrap, alors enlever le CDN 
+		bootstrap.href = "";
+		bootstrapStatus = true;
+	}
+	else { // s'il n'y a pas de bootstrap, alors remettre le lien CDN
+		bootstrap.href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+		bootstrapStatus = false;
+	}
+}
 
-// Step 2 :  Define the function that will respond to the event.
+navbar.addEventListener("dblclick", removeStyle);
 
 
-// Step 3 : Add the event listener for the element and function
+
+
